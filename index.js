@@ -15,7 +15,7 @@ const validateMiddleware = (req, res, next) => {
   if (!req.query.age) {
     return res.redirect('/')
   }
-  next()
+  return next()
 }
 app.get('/', (req, res) => {
   return res.render('check')
@@ -30,7 +30,7 @@ app.post('/check', (req, res) => {
 })
 
 app.get('/major', validateMiddleware, (req, res) => {
-  let age = req.query.age
+  let { age } = req.query
   return res.render('major', { age })
 })
 
